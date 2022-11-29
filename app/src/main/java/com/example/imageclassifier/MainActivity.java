@@ -19,14 +19,19 @@ public class MainActivity extends AppCompatActivity {
             Intent i = new Intent(MainActivity.this, GalleryActivity.class);
             startActivity(i);
         });
-
-
+        
+        
         Button cameraBtn = findViewById(R.id.cameraBtn);
         cameraBtn.setOnClickListener(view -> {
+            int cameraPermissionCheck = ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.CAMERA);
+            if(cameraPermissionCheck == PackageManager.PERMISSION_DENIED) {
+                ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.CAMERA},0);
+            }
+
             Intent i = new Intent(MainActivity.this,CameraActivity.class);
             startActivity(i);
-        });
 
+        });
 
 
 
